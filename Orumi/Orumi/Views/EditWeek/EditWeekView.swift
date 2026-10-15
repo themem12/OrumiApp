@@ -88,7 +88,7 @@ private struct DayCardView: View {
                 )
             }
             .buttonStyle(.plain)
-            .accessibilityHint(isSelected ? "Closes this day's meal plan." : "Opens this day's meal plan.")
+            .accessibilityHint(isSelected ? .dayCardViewHeaderClosesDayAccessibilityHint : .dayCardViewHeaderOpensDayAccessibilityHint)
             if isSelected {
                 MealsCardView(
                     meals: meals,

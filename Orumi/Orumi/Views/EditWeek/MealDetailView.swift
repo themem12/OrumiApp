@@ -39,7 +39,7 @@ struct MealDetailView: View {
                                 mealType: viewModel.meal.type
                             )
                         }
-                        .accessibilityHint("Edit this food")
+                        .accessibilityHint(.mealDetailViewFoodButtonAccessibilityHint)
                         .padding(.horizontal)
                         .padding(.top, viewModel.meal.items.isFirst(foodItem) ? SpaceSize.medium.rawValue : SpaceSize.small.rawValue)
                         .contextMenu {

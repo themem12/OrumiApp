@@ -61,7 +61,7 @@ struct CalendarView: View {
                         ArrowButton(direction: .left)
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("Previews month")
+                    .accessibilityLabel(.calendarViewPreviousMonthAccessibilityLabel)
                 }
 
                 Spacer()
@@ -75,7 +75,7 @@ struct CalendarView: View {
                         ArrowButton(direction: .right)
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("Next month")
+                    .accessibilityLabel(.calendarViewNextMonthAccessibilityLabel)
                 }
             }
             .padding(.vertical, 8)
@@ -105,7 +105,7 @@ struct CalendarView: View {
                         dayProgress.dateState == .isToday
                     )
                     .accessibilityLabel(viewModel.getDayCellAccessibilityLabel(from: dayProgress))
-                    .accessibilityHint("Opens day record")
+                    .accessibilityHint(.calendarViewDayCellAccessibilityHint)
                 }
             }
             MonthOverviewCard(

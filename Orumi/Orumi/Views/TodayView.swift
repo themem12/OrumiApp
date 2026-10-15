@@ -62,7 +62,7 @@ struct TodayView: View {
                     } label: {
                         Image(systemName: "slider.horizontal.3")
                     }
-                    .accessibilityLabel(String(localized: "Edit Week plan"))
+                    .accessibilityLabel(.todayViewEditWeekBarItemAccessibilityLabel)
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationLink {
@@ -72,7 +72,7 @@ struct TodayView: View {
                     } label: {
                         Image(systemName: "calendar.badge.checkmark")
                     }
-                    .accessibilityLabel(String(localized: "See your history"))
+                    .accessibilityLabel(.todayViewHistoryBarItemAccessibilityLabel)
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: .mealDataDidChange), perform: { _ in

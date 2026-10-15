@@ -44,7 +44,6 @@ struct MealCard: View {
                 Text(meal.type.title)
                     .font(.headline.weight(.semibold))
                     .foregroundStyle(AppColors.primaryText)
-                    .accessibilitySortPriority(1)
                 if !hasItems {
                     Text(.mealCardAddFoods)
                         .font(.callout.weight(.semibold))
@@ -95,6 +94,11 @@ struct MealCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .appCardStyle()
         .fixedSize(horizontal: false, vertical: true)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(meal.type.title)
+        .accessibilityHint(.mealCardAccessibilityHint)
+        .accessibilityAddTraits(.isButton)
+        .accessibilitySortPriority(1)
     }
 }
 
