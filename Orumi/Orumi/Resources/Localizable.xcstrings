@@ -708,7 +708,7 @@
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comida"
+            "value" : "Almuerzo"
           }
         }
       }
@@ -1243,6 +1243,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Consulta tu historial."
+          }
+        }
+      }
+    },
+    "today_view_side_view_resume_meal_completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal completed"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comida completada"
+          }
+        }
+      }
+    },
+    "today_view_side_view_resume_meal_not_completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal not completed"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comida sin completar"
           }
         }
       }

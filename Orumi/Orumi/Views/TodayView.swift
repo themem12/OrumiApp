@@ -226,6 +226,7 @@ private struct TodaySidebarView: View {
                 .font(.title.weight(.bold))
             Text(.todayViewSidebarSubtitle)
                 .font(.title3)
+                .accessibilityHidden(true)
 
             Spacer()
             HStack {
@@ -237,6 +238,7 @@ private struct TodaySidebarView: View {
                     size: 180,
                     progressBarColor: animatedColor
                 )
+                .accessibilityElement(children: .combine)
                 Spacer()
             }
             .padding(.bottom, 8)
@@ -247,6 +249,7 @@ private struct TodaySidebarView: View {
             Text(.todayViewSidebarMealsTitle)
                 .font(.footnote.weight(.bold))
                 .padding(.top)
+                .accessibilityHidden(true)
 
             ForEach(MealType.completeMealsOrdered) { mealType in
                 if let meal = meals.filter({ $0.type == mealType }).first {
@@ -267,6 +270,8 @@ private struct TodaySidebarView: View {
                                 .font(.system(size: 30))
                         }
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(getAccessibilityLabelFor(meal: meal))
                 }
             }
         }
@@ -301,6 +306,16 @@ private struct TodaySidebarView: View {
                 animatedProgress = Double(completedMeals) / Double(totalMeals)
             }
         }
+    }
+
+    private func getAccessibilityLabelFor(meal: Meal) -> String {
+        var accessibilityLabel = "\(meal.type.title), "
+        accessibilityLabel.append(
+            String(
+                localized: meal.isCompleted ? .todayViewSideViewResumeMealCompleted : .todayViewSideViewResumeMealNotCompleted
+            )
+        )
+        return accessibilityLabel
     }
 }
 
