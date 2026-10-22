@@ -87,8 +87,10 @@ private struct MealHeaderView: View {
             ZStack {
                 Circle()
                     .foregroundStyle(meal.type.color.opacity(0.3))
-                Image(systemName: meal.type.icon)
-                    .font(.system(size: 70))
+                Image(meal.type.icon)
+                    .resizable()
+                    .scaledToFit()
+                    .iconSize(.xLarge)
                     .foregroundStyle(meal.type.color)
             }
             .frame(width: 130, height: 130)

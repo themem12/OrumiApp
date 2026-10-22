@@ -205,7 +205,7 @@ private struct MealResumeCard: View {
             }
             .iconSize(isWideLayout ? .medium : .xSmall)
             .padding(.top, 16)
-            Image(systemName: meal.mealType.icon)
+            Image(meal.mealType.icon)
                 .iconSize(isWideLayout ? .medium : .xSmall)
                 .foregroundStyle(meal.mealType.color)
                 .padding(.bottom, isWideLayout ? 8 : 16)

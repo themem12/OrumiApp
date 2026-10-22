@@ -32,8 +32,10 @@ struct FoodItemView: View {
                     Circle()
                         .frame(width: 50, height: 50)
                         .foregroundStyle(viewModel.mealType.color.opacity(0.4))
-                    Image(systemName: viewModel.mealType.icon)
-                        .font(.system(size: 24))
+                    Image(viewModel.mealType.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .iconSize(.small)
                         .foregroundStyle(viewModel.mealType.color)
                 }
                 Text(viewModel.mealType.title)

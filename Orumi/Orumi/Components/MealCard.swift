@@ -34,11 +34,13 @@ struct MealCard: View {
                         width: 48,
                         height: 48
                     )
-                Image(systemName: meal.type.icon)
+                Image(meal.type.icon)
+                    .resizable()
+                    .scaledToFit()
+                    .iconSize(.medium)
                     .foregroundStyle(
                         meal.type.color.opacity(hasItems ? 1 : 0.55)
                     )
-                    .font(.title.weight(.semibold))
             }.padding(.top)
             VStack(alignment: .leading) {
                 Text(meal.type.title)

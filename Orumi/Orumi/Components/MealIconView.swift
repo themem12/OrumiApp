@@ -17,7 +17,9 @@ struct MealIconView: View {
             Circle()
                 .frame(width: size, height: size)
                 .foregroundStyle(mealType.color.opacity(0.4))
-            Image(systemName: mealType.icon)
+            Image(mealType.icon)
+                .resizable()
+                .scaledToFit()
                 .font(.system(size: size/2))
                 .foregroundStyle(mealType.color)
         }
