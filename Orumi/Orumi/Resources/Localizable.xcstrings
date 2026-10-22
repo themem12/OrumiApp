@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "%1$@, %2$@"
           }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
         }
       }
     },
@@ -118,6 +124,91 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desayuno"
+          }
+        }
+      }
+    },
+    "calendar_view_day_cell_accessibility_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opens day record"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre el registro del día"
+          }
+        }
+      }
+    },
+    "calendar_view_next_month_accessibility_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next month"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mes siguiente"
+          }
+        }
+      }
+    },
+    "calendar_view_previous_month_accessibility_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous month"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mes anterior"
+          }
+        }
+      }
+    },
+    "day_card_view_header_closes_day_accessibility_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Closes this day's meal plan."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cierra el plan de comidas del día."
+          }
+        }
+      }
+    },
+    "day_card_view_header_opens_day_accessibility_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opens this day's meal plan."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre el plan de comidas del día."
           }
         }
       }
@@ -617,7 +708,24 @@
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comida"
+            "value" : "Almuerzo"
+          }
+        }
+      }
+    },
+    "meal_card_accessibility_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to see in detail"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca para ver los detalles."
           }
         }
       }
@@ -805,6 +913,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aún no haz agregado alimentos"
+          }
+        }
+      }
+    },
+    "meal_detail_view_food_button_accessibility_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit this food"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edita este alimento"
           }
         }
       }
@@ -1037,6 +1162,23 @@
         }
       }
     },
+    "today_view_edit_week_bar_item_accessibility_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Week plan"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edita el plan semanal."
+          }
+        }
+      }
+    },
     "today_view_empty_plan_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1084,6 +1226,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminar día?"
+          }
+        }
+      }
+    },
+    "today_view_history_bar_item_accessibility_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See your history"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulta tu historial."
+          }
+        }
+      }
+    },
+    "today_view_side_view_resume_meal_completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal completed"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comida completada"
+          }
+        }
+      }
+    },
+    "today_view_side_view_resume_meal_not_completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal not completed"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comida sin completar"
           }
         }
       }

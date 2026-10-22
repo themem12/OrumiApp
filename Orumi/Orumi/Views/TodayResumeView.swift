@@ -24,8 +24,9 @@ struct TodayResumeView: View {
                         .font(.system(size: 76))
                         .foregroundStyle(AppColors.dinner.opacity(0.9))
                         .padding(.bottom, 10)
+                        .accessibilityHidden(true)
                     Text(.todayResumeViewTitle)
-                        .font(.system(size: 32, weight: .bold))
+                        .font(.largeTitle.weight(.bold))
                         .foregroundStyle(AppColors.primaryText)
                     Text(viewModel.dateString)
                         .font(
@@ -72,12 +73,12 @@ struct EmptyRecordDayView: View {
                     .foregroundStyle(AppColors.primaryGreen)
                     .padding(.trailing, 23)
                     .padding(.bottom, 17)
-            }
+            }.accessibilityHidden(true)
             Text(.todayResumeViewEmptyTitle)
-                .font(.system(size: 24, weight: .semibold))
+                .font(.title2.weight(.semibold))
                 .foregroundStyle(AppColors.primaryText)
             Text(.todayResumeViewEmptyMessage)
-                .font(.system(size: 16, weight: .light))
+                .font(.callout.weight(.light))
                 .foregroundStyle(AppColors.primaryText)
         }.frame(maxWidth: .infinity)
     }
@@ -101,18 +102,19 @@ private struct DayDataView: View {
                 totalMeals: viewModel.totalMeals,
                 size: layoutMode == .compact ? 160 : 200,
                 progressBarColor: animatedColor
-            )
+            ).accessibilityElement(children: .combine)
             HStack {
                 Text(.todayResumeViewComment)
                     .foregroundStyle(AppColors.secondaryText)
                 Image(systemName: "heart")
                     .foregroundStyle(.yellow)
+                    .accessibilityHidden(true)
             }
-            .font(.system(size: 14, weight: .light))
+            .font(.subheadline.weight(.light))
             .padding(.top, 12)
             Label(.todayResumeViewSummaryTitle, systemImage: "leaf")
                 .foregroundStyle(AppColors.deepGreen)
-                .font(.system(size: 14))
+                .font(.subheadline)
                 .padding(.top, 8)
             HStack {
                 ForEach(viewModel.meals) { meal in
@@ -140,7 +142,7 @@ private struct DayDataView: View {
             }
 
             animationTask = Task {
-                for (index, meal) in viewModel.meals.enumerated() {
+                for (index, _) in viewModel.meals.enumerated() {
 
                     try? await Task.sleep(for: .milliseconds(400))
 
@@ -209,13 +211,15 @@ private struct MealResumeCard: View {
                 .padding(.bottom, isWideLayout ? 8 : 16)
             if isWideLayout {
                 Text(meal.mealType.title)
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.title2.weight(.bold))
                     .foregroundStyle(AppColors.primaryText)
                     .padding(.bottom)
             }
         }
         .frame(maxWidth: .infinity)
         .appSoftCardStyle(background: meal.mealType.color.opacity(0.08))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(meal.mealType.title), \(meal.isCompleted ? "Completed" : "Not completed")")
         .scaleEffect(
             shouldHighlight
             ? 1.2

@@ -62,6 +62,7 @@ struct TodayView: View {
                     } label: {
                         Image(systemName: "slider.horizontal.3")
                     }
+                    .accessibilityLabel(.todayViewEditWeekBarItemAccessibilityLabel)
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationLink {
@@ -71,6 +72,7 @@ struct TodayView: View {
                     } label: {
                         Image(systemName: "calendar.badge.checkmark")
                     }
+                    .accessibilityLabel(.todayViewHistoryBarItemAccessibilityLabel)
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: .mealDataDidChange), perform: { _ in
@@ -116,9 +118,10 @@ private struct HeaderView: View {
                 Image(systemName: viewModel.titleIcon)
                     .font(.title3)
                     .foregroundStyle(viewModel.titleIconColor)
+                    .accessibilityHidden(true)
             }
             Text(viewModel.dateTitle)
-                .font(.system(size: 12, weight: .light))
+                .font(.caption.weight(.light))
                 .foregroundStyle(AppColors.primaryText)
         }.padding(.horizontal)
     }
@@ -173,7 +176,7 @@ private struct TodayContentView: View {
                                 )
                                 .padding(.top, viewModel.sortedMeals.isFirst(meal) ? SpaceSize.xLarge.rawValue : SpaceSize.large.rawValue)
                                 .padding(.trailing, SpaceSize.xLarge.rawValue)
-                            }
+                            }.accessibilityElement(children: .contain)
                         }
                     }
                     Button {
@@ -220,9 +223,10 @@ private struct TodaySidebarView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(.todayTitle)
-                .font(.system(size: 30, weight: .bold))
+                .font(.title.weight(.bold))
             Text(.todayViewSidebarSubtitle)
-                .font(.system(size: 20, weight: .regular))
+                .font(.title3)
+                .accessibilityHidden(true)
 
             Spacer()
             HStack {
@@ -234,6 +238,7 @@ private struct TodaySidebarView: View {
                     size: 180,
                     progressBarColor: animatedColor
                 )
+                .accessibilityElement(children: .combine)
                 Spacer()
             }
             .padding(.bottom, 8)
@@ -242,8 +247,9 @@ private struct TodaySidebarView: View {
                 .overlay(.gray.opacity(0.3))
 
             Text(.todayViewSidebarMealsTitle)
-                .font(.system(size: 14, weight: .bold))
+                .font(.footnote.weight(.bold))
                 .padding(.top)
+                .accessibilityHidden(true)
 
             ForEach(MealType.completeMealsOrdered) { mealType in
                 if let meal = meals.filter({ $0.type == mealType }).first {
@@ -264,6 +270,8 @@ private struct TodaySidebarView: View {
                                 .font(.system(size: 30))
                         }
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(getAccessibilityLabelFor(meal: meal))
                 }
             }
         }
@@ -298,6 +306,16 @@ private struct TodaySidebarView: View {
                 animatedProgress = Double(completedMeals) / Double(totalMeals)
             }
         }
+    }
+
+    private func getAccessibilityLabelFor(meal: Meal) -> String {
+        var accessibilityLabel = "\(meal.type.title), "
+        accessibilityLabel.append(
+            String(
+                localized: meal.isCompleted ? .todayViewSideViewResumeMealCompleted : .todayViewSideViewResumeMealNotCompleted
+            )
+        )
+        return accessibilityLabel
     }
 }
 

@@ -20,7 +20,7 @@ struct HistoryView: View {
                 Text(.historyViewTitle)
                     .font(.system(size: 40, weight: .bold))
                 Text(.historyViewSubtitle)
-                    .font(.system(size: 12, weight: .light))
+                    .font(.caption.weight(.light))
                 
                 CalendarView(viewModel: viewModel) { dayProgress in
                     guard dayProgress.dateState != .isFuture else { return }
@@ -59,7 +59,9 @@ struct CalendarView: View {
                         viewModel.fetchPreviousMonth()
                     } label: {
                         ArrowButton(direction: .left)
-                    }.buttonStyle(.plain)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(.calendarViewPreviousMonthAccessibilityLabel)
                 }
 
                 Spacer()
@@ -71,7 +73,9 @@ struct CalendarView: View {
                         viewModel.fetchNextMonth()
                     } label: {
                         ArrowButton(direction: .right)
-                    }.buttonStyle(.plain)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(.calendarViewNextMonthAccessibilityLabel)
                 }
             }
             .padding(.vertical, 8)
@@ -79,6 +83,7 @@ struct CalendarView: View {
             LazyVGrid(columns: columns, spacing: 8) {
                 ForEach(WeekDay.orderedCases) { weekDay in
                     WeekDayCardView(weekDay: weekDay.shortTitle)
+                        .accessibilityHidden(true)
                 }
                 ForEach(viewModel.monthData) { dayProgress in
                     Button {
@@ -89,7 +94,18 @@ struct CalendarView: View {
                         } else {
                             DayCardView(dayData: dayProgress)
                         }
-                    }.buttonStyle(.plain)
+                    }
+                    .buttonStyle(.plain)
+                    //The days marked as 0 are placeholders or spaces before or after the actual days,
+                    //This makes the calendar show the same format of the week starting in Monday
+                    //If the day is a future one or is today but not finished, we don't add this button since the button won't do anything
+                    .accessibilityHidden(
+                        dayProgress.day == 0 ||
+                        dayProgress.dateState == .isFuture ||
+                        dayProgress.dateState == .isToday
+                    )
+                    .accessibilityLabel(viewModel.getDayCellAccessibilityLabel(from: dayProgress))
+                    .accessibilityHint(.calendarViewDayCellAccessibilityHint)
                 }
             }
             MonthOverviewCard(
@@ -151,7 +167,7 @@ private struct MonthOverviewCard: View {
                     Text("\(numberOfDays)")
                         .foregroundStyle(color)
                     Text(categoryText.lowercased())
-                        .font(.system(size: 12, weight: .light))
+                        .font(.caption.weight(.light))
                 }
             }.frame(maxWidth: .infinity)
         }
@@ -162,7 +178,7 @@ private struct WeekDayCardView: View {
     let weekDay: String
     var body: some View {
         Text(weekDay)
-            .font(.system(size: 14, weight: .heavy))
+            .font(.subheadline.weight(.semibold))
             .foregroundStyle(.black.opacity(0.4))
     }
 }
@@ -182,10 +198,10 @@ private struct DayCardView: View {
     var body: some View {
         VStack {
             Text("\(dayData.day)")
-                .font(.system(size: 14, weight: .semibold))
+                .font(.subheadline.weight(.semibold))
             if dayData.dateState == .isPast || dayData.dateState == .isTodayFinished {
                 Text(dayData.percentage)
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.subheadline.weight(.semibold))
                     .foregroundStyle(dayData.accentColor)
                     .padding(.top, 4)
             }

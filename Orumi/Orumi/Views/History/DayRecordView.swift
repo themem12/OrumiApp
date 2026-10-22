@@ -23,7 +23,7 @@ struct DayRecordView: View {
                     .foregroundStyle(AppColors.primaryText)
                 Spacer()
                 Text(viewModel.dayStateTitle)
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.caption.weight(.bold))
                     .foregroundStyle(viewModel.dayStateColor)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 8)
@@ -33,7 +33,7 @@ struct DayRecordView: View {
                     }
             }.padding(.horizontal)
             Text(viewModel.dateTitle)
-                .font(.system(size: 18, weight: .regular))
+                .font(.headline)
                 .foregroundStyle(AppColors.primaryText)
                 .padding(.horizontal)
             if !viewModel.isEmpty {
@@ -41,7 +41,7 @@ struct DayRecordView: View {
                     viewModel.completedDaysTitle,
                     systemImage: "checkmark"
                 )
-                .font(.system(size: 16, weight: .regular))
+                .font(.callout)
                 .foregroundStyle(AppColors.primaryText)
                 .padding(.vertical, 4)
                 .padding(.horizontal, 12)
@@ -57,6 +57,8 @@ struct DayRecordView: View {
                             .padding(.horizontal)
                             .padding(.top, viewModel.meals.isFirst(meal) ? SpaceSize.medium.rawValue : SpaceSize.small.rawValue)
                             .padding(.bottom, viewModel.meals.isLast(meal) ? SpaceSize.medium.rawValue : SpaceSize.small.rawValue)
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel(viewModel.getAccessibilityLabel(from: meal))
                     }
                 }
             } else {
