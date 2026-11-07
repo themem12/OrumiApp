@@ -21,6 +21,7 @@ final class FoodItemViewModel {
     var didSaveFood = false
     var foodField: String = ""
     var amountField: String = ""
+    var selectedFoodType: FoodType? = nil
 
     var buttonTitle: String {
         switch mode {
@@ -47,6 +48,7 @@ final class FoodItemViewModel {
         case .edit(let foodItem):
             foodField = foodItem.name
             amountField = foodItem.portion
+            selectedFoodType = foodItem.foodType
         }
     }
 
@@ -65,11 +67,16 @@ final class FoodItemViewModel {
         switch mode {
         case .create:
             onSave(
-                FoodItem(name: foodField, portion: amountField)
+                FoodItem(
+                    name: foodField,
+                    portion: amountField,
+                    foodType: selectedFoodType
+                )
             )
         case .edit(let foodItem):
             foodItem.name = foodField
             foodItem.portion = amountField
+            foodItem.foodType = selectedFoodType
             onSave(foodItem)
         }
 

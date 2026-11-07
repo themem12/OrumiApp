@@ -108,9 +108,9 @@ struct MealCard: View {
     let meal = Meal(
         type: .breakfast,
         items: [
-            .init(name: "Pollo", portion: "123 gr"),
-            .init(name: "Pan integral", portion: "3 piezas"),
-            .init(name: "Frijoles", portion: "1 taza"),
+            .init(name: "Pollo", portion: "123 gr", foodType: .protein),
+            .init(name: "Pan integral", portion: "3 piezas", foodType: .grains),
+            .init(name: "Frijoles", portion: "1 taza", foodType: .legumes),
         ]
     )
     meal.isCompleted = true

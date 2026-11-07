@@ -10,20 +10,27 @@ import SwiftUI
 struct FoodTypePillView: View {
 
     let foodType: FoodType
+    var isSelected: Bool = false
 
     var body: some View {
         HStack {
             Image(foodType.icon)
                 .resizable()
                 .scaledToFit()
-                .iconSize(.xSmall)
+                .iconSize(.small)
             Text(foodType.title)
                 .font(.caption)
         }
-        .foregroundStyle(AppColors.secondaryText)
+        .foregroundStyle(isSelected ? AppColors.primaryGreen : AppColors.secondaryText)
+        .bold(isSelected)
         .padding(.vertical, SpaceSize.small.rawValue)
         .padding(.horizontal, SpaceSize.small.rawValue)
-        .appCardStyle(cornerRadius: 12)
+        .appSelectablePillStyle(
+            background: AppColors.card,
+            strokeColor: isSelected ? AppColors.primaryGreen : AppColors.border.opacity(0.6),
+            strokeWidth: isSelected ? 2 : 1,
+            cornerRadius: 12
+        )
     }
 }
 
@@ -34,7 +41,7 @@ struct FoodTypePillView: View {
         FoodTypePillView(foodType: .fruit)
         FoodTypePillView(foodType: .grains)
         FoodTypePillView(foodType: .legumes)
-        FoodTypePillView(foodType: .protein)
+        FoodTypePillView(foodType: .protein, isSelected: true)
         FoodTypePillView(foodType: .vegetables)
     }
 }

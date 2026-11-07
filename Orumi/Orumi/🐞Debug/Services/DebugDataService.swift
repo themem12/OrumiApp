@@ -89,71 +89,71 @@ class DebugDataService {
                 case .breakfast:
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Avocado", portion: "1/3 of piece")
+                        foodItem: .avocado
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Mozzarella cheese", portion: "75 gr")
+                        foodItem: .cheese
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Strawberries", portion: "1 cup")
+                        foodItem: .strawberries
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Turkey breast", portion: "75 gr")
+                        foodItem: .jam
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Whole wheat bread", portion: "2 pieces")
+                        foodItem: .bread
                     )
                 case .lunch:
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Broccoli", portion: "1 cup")
+                        foodItem: .brocoli
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Brown rice", portion: "1 cup")
+                        foodItem: .rice
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Chicken breast", portion: "75 gr")
+                        foodItem: .jam
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Corn tortillas", portion: "3 pieces")
+                        foodItem: .tortillas
                     )
                 case .dinner:
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Mixed greens", portion: "1 cup")
+                        foodItem: .mixedGreens
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Sweet Potato", portion: "1 cup")
+                        foodItem: .potatoes
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Turkey breast", portion: "75 gr")
+                        foodItem: .jam
                     )
                 case .collationAM:
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Almonds", portion: "10 pieces")
+                        foodItem: .almonds
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Cucumber", portion: "Free")
+                        foodItem: .cucumber
                     )
                 case .collationPM:
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Blueberries", portion: "1 cup")
+                        foodItem: .strawberries
                     )
                     mealService.addFoodItem(
                         to: meal,
-                        foodItem: FoodItem(name: "Greek Yogurt", portion: "1 cup")
+                        foodItem: .greekYogurt
                     )
                 }
             }

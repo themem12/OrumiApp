@@ -20,6 +20,7 @@ struct AppInputField: View {
             HStack(spacing: 12) {
                 Image(systemName: icon)
                     .foregroundStyle(accentColor)
+                    .accessibilityHidden(true)
 
                 TextField(
                     placeholder,
