@@ -104,7 +104,7 @@ struct FoodItemView: View {
     }
 }
 
-struct FoodTypeCollectionView: View {
+private struct FoodTypeCollectionView: View {
 
     @Binding var foodTypeSelected: FoodType?
 

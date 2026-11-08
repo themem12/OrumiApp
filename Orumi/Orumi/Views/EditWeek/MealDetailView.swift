@@ -29,6 +29,10 @@ struct MealDetailView: View {
                 }
                 Spacer()
             } else {
+                FoodTypeCollectionView(
+                    foodTypes: viewModel.getMealTypes()
+                )
+                .padding(.horizontal)
                 ScrollView {
                     ForEach(viewModel.meal.items) { foodItem in
                         Button {
@@ -114,6 +118,22 @@ private struct MealHeaderView: View {
                     )
             }
             Spacer()
+        }
+    }
+}
+
+private struct FoodTypeCollectionView: View {
+
+    let foodTypes: [FoodType]
+
+    var body: some View {
+        FlowLayout(spacing: 8, rowSpacing: 8) {
+            ForEach(foodTypes) { foodType in
+                FoodTypePillView(
+                    foodType: foodType
+                )
+                .accessibilityLabel("Food type \(foodType.title)")
+            }
         }
     }
 }
