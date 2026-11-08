@@ -67,7 +67,7 @@ struct FoodItemView: View {
                 focusedField = nil
             }
 
-            FoodTypeCollectionView(
+            FoodItemFoodTypeCollectionView(
                 foodTypeSelected: $viewModel.selectedFoodType
             )
 
@@ -104,7 +104,7 @@ struct FoodItemView: View {
     }
 }
 
-private struct FoodTypeCollectionView: View {
+private struct FoodItemFoodTypeCollectionView: View {
 
     @Binding var foodTypeSelected: FoodType?
 

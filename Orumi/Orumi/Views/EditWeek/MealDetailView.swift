@@ -122,7 +122,7 @@ private struct MealHeaderView: View {
     }
 }
 
-private struct FoodTypeCollectionView: View {
+struct FoodTypeCollectionView: View {
 
     let foodTypes: [FoodType]
 
