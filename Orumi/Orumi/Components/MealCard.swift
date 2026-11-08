@@ -20,75 +20,94 @@ struct MealCard: View {
 
     var body: some View {
         HStack(alignment: .top) {
+            //Card accent
             Rectangle()
                 .fill(meal.type.color)
                 .frame(width: 6)
-            ZStack {
-                Circle()
-                    .fill(
-                        meal.type.color.opacity(
-                            hasItems ? 0.15 : 0.1
-                        )
-                    )
-                    .frame(
-                        width: 48,
-                        height: 48
-                    )
-                Image(systemName: meal.type.icon)
-                    .foregroundStyle(
-                        meal.type.color.opacity(hasItems ? 1 : 0.55)
-                    )
-                    .font(.title.weight(.semibold))
-            }.padding(.top)
             VStack(alignment: .leading) {
-                Text(meal.type.title)
-                    .font(.headline.weight(.semibold))
-                    .foregroundStyle(AppColors.primaryText)
-                if !hasItems {
-                    Text(.mealCardAddFoods)
-                        .font(.callout.weight(.semibold))
-                        .foregroundStyle(AppColors.secondaryText.opacity(0.7))
-                } else {
-                    Grid(alignment: .leading, horizontalSpacing: 40) {
-                        ForEach(meal.items.sorted(by: { $0.name < $1.name })) { item in
-                            GridRow {
-                                HStack {
-                                    Text("•")
-                                        .foregroundStyle(meal.type.color)
-                                    Text(item.name)
-                                        .font(.footnote.weight(.light))
-                                        .foregroundStyle(AppColors.secondaryText)
+                HStack(alignment: .top) {
+                    //Meal icon
+                    ZStack {
+                        Circle()
+                            .fill(
+                                meal.type.color.opacity(
+                                    hasItems ? 0.15 : 0.1
+                                )
+                            )
+                            .frame(
+                                width: 48,
+                                height: 48
+                            )
+                        Image(meal.type.icon)
+                            .resizable()
+                            .scaledToFit()
+                            .iconSize(.medium)
+                            .foregroundStyle(
+                                meal.type.color.opacity(hasItems ? 1 : 0.55)
+                            )
+                    }.padding(.top)
+                    //Meal data
+                    VStack(alignment: .leading) {
+                        Text(meal.type.title)
+                            .font(.headline.weight(.semibold))
+                            .foregroundStyle(AppColors.primaryText)
+                        if !hasItems {
+                            Text(.mealCardAddFoods)
+                                .font(.callout.weight(.semibold))
+                                .foregroundStyle(AppColors.secondaryText.opacity(0.7))
+                        } else {
+                            Grid(alignment: .leading, horizontalSpacing: 40) {
+                                ForEach(meal.items.sorted(by: { $0.name < $1.name })) { item in
+                                    GridRow {
+                                        HStack {
+                                            Text("•")
+                                                .foregroundStyle(meal.type.color)
+                                            Text(item.name)
+                                                .font(.footnote.weight(.light))
+                                                .foregroundStyle(AppColors.secondaryText)
+                                        }
+                                        Text(item.portion)
+                                            .font(.footnote)
+                                            .foregroundStyle(AppColors.secondaryText)
+                                    }
                                 }
-                                Text(item.portion)
-                                    .font(.footnote)
-                                    .foregroundStyle(AppColors.secondaryText)
                             }
                         }
                     }
-                }
-            }
-            .padding()
-            Spacer()
-            if isRecord {
-                Group {
-                    if !hasItems {
-                        Image(systemName: "circle")
-                            .foregroundStyle(Color.gray.opacity(0.2))
-                            .font(.system(size: 30))
-                    } else {
-                        if meal.isCompleted {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundStyle(AppColors.lunch)
-                                .font(.system(size: 30))
-                        } else {
-                            Image(systemName: "circle")
-                                .foregroundStyle(Color.gray.opacity(0.5))
-                                .font(.system(size: 30))
+                    .padding()
+                    Spacer()
+                    //Meal is completed indicator for record view
+                    if isRecord {
+                        Group {
+                            if !hasItems {
+                                Image(systemName: "circle")
+                                    .foregroundStyle(Color.gray.opacity(0.2))
+                                    .font(.system(size: 30))
+                            } else {
+                                if meal.isCompleted {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundStyle(AppColors.lunch)
+                                        .font(.system(size: 30))
+                                } else {
+                                    Image(systemName: "circle")
+                                        .foregroundStyle(Color.gray.opacity(0.5))
+                                        .font(.system(size: 30))
+                                }
+                            }
                         }
+                        .padding(.top)
                     }
                 }
-                .padding(.top)
+                Divider()
+                    .frame(height: 1)
+                    .background(AppColors.border.opacity(0.6))
+                //FoodType list for this meal
+                FoodTypeCollectionView(
+                    foodTypes: meal.items.compactMap { $0.foodType }.removingDuplicates()
+                )
+                .padding(.bottom)
             }
+            .padding(.leading, SpaceSize.xSmall.rawValue)
         }
         .padding(.trailing)
         .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -106,9 +125,9 @@ struct MealCard: View {
     let meal = Meal(
         type: .breakfast,
         items: [
-            .init(name: "Pollo", portion: "123 gr"),
-            .init(name: "Pan integral", portion: "3 piezas"),
-            .init(name: "Frijoles", portion: "1 taza"),
+            .init(name: "Pollo", portion: "123 gr", foodType: .protein),
+            .init(name: "Pan integral", portion: "3 piezas", foodType: .grains),
+            .init(name: "Frijoles", portion: "1 taza", foodType: .legumes),
         ]
     )
     meal.isCompleted = true

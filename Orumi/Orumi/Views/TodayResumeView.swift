@@ -116,16 +116,12 @@ private struct DayDataView: View {
                 .foregroundStyle(AppColors.deepGreen)
                 .font(.subheadline)
                 .padding(.top, 8)
-            HStack {
-                ForEach(viewModel.meals) { meal in
-                    MealResumeCard(
-                        meal: meal,
-                        canHighlight: meal.mealType == mealTypeHighlighted,
-                        isWideLayout: layoutMode == .wide
-                    )
-                    .padding(.vertical, 8)
-                }
-            }
+            MealCardsView(
+                meals: viewModel.meals,
+                shouldShowFoodTypes: viewModel.shouldShowFoodTypes,
+                mealTypeHighlighted: mealTypeHighlighted,
+                isWideLayout: layoutMode == .wide
+            )
             Spacer()
         }
         .frame(maxWidth: .infinity)
@@ -187,7 +183,77 @@ private struct DayDataView: View {
     }
 }
 
-private struct MealResumeCard: View {
+private struct MealCardsView: View {
+
+    let meals: [TodayReviewMealModel]
+    let shouldShowFoodTypes: Bool
+    let mealTypeHighlighted: MealType?
+    let isWideLayout: Bool
+
+    var body: some View {
+        if shouldShowFoodTypes {
+            VStack {
+                ForEach(meals) { meal in
+                    CompleteMealResumeCard(
+                        meal: meal,
+                        canHighlight: meal.mealType == mealTypeHighlighted
+                    )
+                    .padding()
+                    .appSoftCardStyle(background: meal.mealType.color.opacity(0.06))
+                }
+            }
+        } else {
+            HStack {
+                ForEach(meals) { meal in
+                    EmptyFoodTypeMealResumeCard(
+                        meal: meal,
+                        canHighlight: meal.mealType == mealTypeHighlighted,
+                        isWideLayout: isWideLayout
+                    )
+                    .padding(.vertical, 8)
+                }
+            }
+        }
+    }
+}
+
+private struct CompleteMealResumeCard: View {
+
+    let meal: TodayReviewMealModel
+    let canHighlight: Bool
+    var shouldHighlight: Bool { canHighlight && meal.isCompleted }
+
+    var body: some View {
+        HStack(alignment: .top) {
+            Image(meal.mealType.icon)
+                .resizable()
+                .scaledToFit()
+                .iconSize(.medium)
+                .foregroundStyle(meal.mealType.color)
+                .bold()
+            VStack(alignment: .leading) {
+                Text(meal.mealType.title)
+                    .font(.title2)
+                    .bold()
+                FoodTypeCollectionView(foodTypes: meal.foodTypes)
+            }
+            .padding(.leading)
+            Group {
+                if meal.isCompleted {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                } else {
+                    Image(systemName: "circle")
+                        .foregroundStyle(.gray)
+                }
+            }
+            .iconSize(.medium)
+            .padding(.top, 16)
+        }
+    }
+}
+
+private struct EmptyFoodTypeMealResumeCard: View {
     let meal: TodayReviewMealModel
     let canHighlight: Bool
     var shouldHighlight: Bool { canHighlight && meal.isCompleted }
@@ -205,8 +271,10 @@ private struct MealResumeCard: View {
             }
             .iconSize(isWideLayout ? .medium : .xSmall)
             .padding(.top, 16)
-            Image(systemName: meal.mealType.icon)
-                .iconSize(isWideLayout ? .medium : .xSmall)
+            Image(meal.mealType.icon)
+                .resizable()
+                .scaledToFit()
+                .iconSize(isWideLayout ? .medium : .small)
                 .foregroundStyle(meal.mealType.color)
                 .padding(.bottom, isWideLayout ? 8 : 16)
             if isWideLayout {
@@ -247,7 +315,7 @@ private struct MealResumeCard: View {
             TodayResumeViewModel(
                 dayRecord: DayRecord(
                     date: .now,
-                    from: DayPlan(day: .monday),
+                    from: DayPlan.monday,
                     isCompleted: true
                 )
             )

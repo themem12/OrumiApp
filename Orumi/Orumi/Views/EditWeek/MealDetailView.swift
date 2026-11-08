@@ -29,6 +29,10 @@ struct MealDetailView: View {
                 }
                 Spacer()
             } else {
+                FoodTypeCollectionView(
+                    foodTypes: viewModel.getMealTypes()
+                )
+                .padding(.horizontal)
                 ScrollView {
                     ForEach(viewModel.meal.items) { foodItem in
                         Button {
@@ -87,8 +91,10 @@ private struct MealHeaderView: View {
             ZStack {
                 Circle()
                     .foregroundStyle(meal.type.color.opacity(0.3))
-                Image(systemName: meal.type.icon)
-                    .font(.system(size: 70))
+                Image(meal.type.icon)
+                    .resizable()
+                    .scaledToFit()
+                    .iconSize(.xLarge)
                     .foregroundStyle(meal.type.color)
             }
             .frame(width: 130, height: 130)
@@ -112,6 +118,22 @@ private struct MealHeaderView: View {
                     )
             }
             Spacer()
+        }
+    }
+}
+
+struct FoodTypeCollectionView: View {
+
+    let foodTypes: [FoodType]
+
+    var body: some View {
+        FlowLayout(spacing: 8, rowSpacing: 8) {
+            ForEach(foodTypes) { foodType in
+                FoodTypePillView(
+                    foodType: foodType
+                )
+                .accessibilityLabel("Food type \(foodType.title)")
+            }
         }
     }
 }

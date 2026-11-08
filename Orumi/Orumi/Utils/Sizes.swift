@@ -8,6 +8,8 @@ import Foundation
 
 /// Standard icon sizes used throughout the app.
 enum IconSize: CGFloat {
+    /// xxSmall: 16
+    case xxSmall = 16
     /// xSmall: 20
     case xSmall = 20
     /// small: 24
@@ -16,6 +18,8 @@ enum IconSize: CGFloat {
     case medium = 32
     /// large: 40
     case large = 40
+    /// xLarge: 70
+    case xLarge = 70
 }
 
 enum SpaceSize: CGFloat {

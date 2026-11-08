@@ -12,4 +12,5 @@ struct TodayReviewMealModel: Identifiable {
     
     let mealType: MealType
     let isCompleted: Bool
+    let foodTypes: [FoodType]
 }

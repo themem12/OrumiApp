@@ -32,10 +32,13 @@ struct FoodItemView: View {
                     Circle()
                         .frame(width: 50, height: 50)
                         .foregroundStyle(viewModel.mealType.color.opacity(0.4))
-                    Image(systemName: viewModel.mealType.icon)
-                        .font(.system(size: 24))
+                    Image(viewModel.mealType.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .iconSize(.small)
                         .foregroundStyle(viewModel.mealType.color)
                 }
+                .accessibilityHidden(true)
                 Text(viewModel.mealType.title)
                     .font(.title2.weight(.semibold))
             }
@@ -63,7 +66,11 @@ struct FoodItemView: View {
             .onSubmit {
                 focusedField = nil
             }
-            
+
+            FoodItemFoodTypeCollectionView(
+                foodTypeSelected: $viewModel.selectedFoodType
+            )
+
             Button {
                 viewModel.validateValues()
             } label: {
@@ -93,6 +100,28 @@ struct FoodItemView: View {
             Button(.foodItemViewWarningOk, role: .cancel) { }
         } message: {
             Text(viewModel.errorMessage ?? "")
+        }
+    }
+}
+
+private struct FoodItemFoodTypeCollectionView: View {
+
+    @Binding var foodTypeSelected: FoodType?
+
+    var body: some View {
+        FlowLayout(spacing: 8, rowSpacing: 8) {
+            ForEach(FoodType.allCases) { foodType in
+                Button {
+                    foodTypeSelected = foodType
+                } label: {
+                    FoodTypePillView(
+                        foodType: foodType,
+                        isSelected: foodTypeSelected == foodType
+                    )
+                }
+                .accessibilityLabel("Food type \(foodType.title)")
+                .accessibilityHint(foodTypeSelected == foodType ? "Is selected" : "Select food type")
+            }
         }
     }
 }

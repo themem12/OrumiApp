@@ -9,15 +9,17 @@ import SwiftUI
 
 struct AppCardStyle: ViewModifier {
 
+    var cornerRadius: CGFloat = 24
+
     func body(content: Content) -> some View {
 
         content
             .background(AppColors.card)
             .clipShape(
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: cornerRadius)
             )
             .overlay {
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(
                         AppColors.border.opacity(0.8),
                         lineWidth: 1
@@ -34,19 +36,22 @@ struct AppCardStyle: ViewModifier {
 struct SoftCardStyle: ViewModifier {
 
     let background: Color
+    let strokeColor: Color
+    var strokeWidth: CGFloat = 1
+    var cornerRadius: CGFloat = 24
 
     func body(content: Content) -> some View {
 
         content
             .background(background)
             .clipShape(
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: cornerRadius)
             )
             .overlay {
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(
-                        AppColors.border.opacity(0.6),
-                        lineWidth: 1
+                        strokeColor,
+                        lineWidth: strokeWidth
                     )
             }
             .shadow(
@@ -93,8 +98,17 @@ extension View {
         modifier(AppCardStyle())
     }
 
+    func appCardStyle(cornerRadius: CGFloat) -> some View {
+        modifier(AppCardStyle(cornerRadius: cornerRadius))
+    }
+
     func appSoftCardStyle(background: Color) -> some View {
-        modifier(SoftCardStyle(background: background))
+        modifier(
+            SoftCardStyle(
+                background: background,
+                strokeColor: AppColors.border.opacity(0.6)
+            )
+        )
     }
 
     func appSoftPointedCardStyle(background: Color, strokeColor: Color) -> some View {
@@ -102,6 +116,17 @@ extension View {
             SoftPointedCardStyle(
                 background: background,
                 strokeColor: strokeColor
+            )
+        )
+    }
+
+    func appSelectablePillStyle(background: Color, strokeColor: Color, strokeWidth: CGFloat, cornerRadius: CGFloat) -> some View {
+        modifier(
+            SoftCardStyle(
+                background: background,
+                strokeColor: strokeColor,
+                strokeWidth: strokeWidth,
+                cornerRadius: cornerRadius
             )
         )
     }

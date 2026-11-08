@@ -188,8 +188,10 @@ private struct EditWeekMealCardView: View {
                     Circle()
                         .fill(meal.type.color.opacity(0.18))
                         .frame(width: 30, height: 30)
-                    Image(systemName: meal.type.icon)
-                        .font(.system(size: 16))
+                    Image(meal.type.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .iconSize(.xSmall)
                         .foregroundStyle(meal.type.color)
                 }
                 VStack(alignment: .leading) {

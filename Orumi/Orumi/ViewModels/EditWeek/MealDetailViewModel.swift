@@ -33,4 +33,8 @@ final class MealDetailViewModel {
         guard let foodItem = foodItemPendingDeletion else { return }
         service.deleteFoodItem(foodItem, from: meal)
     }
+
+    func getMealTypes() -> [FoodType] {
+        meal.items.compactMap { $0.foodType }.removingDuplicates()
+    }
 }

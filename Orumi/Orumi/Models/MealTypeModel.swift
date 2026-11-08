@@ -67,18 +67,16 @@ enum MealType: String, Codable, CaseIterable, Identifiable {
         }
     }
 
-    var icon: String {
+    var icon: ImageResource {
         switch self {
         case .breakfast:
-            "sun.max"
+                .breakfast
         case .lunch:
-            "fork.knife"
+                .lunch
         case .dinner:
-            "moon.stars.fill"
-        case .collationAM:
-            "tree.fill"
-        case .collationPM:
-            "tree.fill"
+                .dinner
+        case .collationAM, .collationPM:
+                .snack
         }
     }
 

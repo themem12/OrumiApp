@@ -23,4 +23,20 @@ extension View {
             .frame(width: size.rawValue, height: size.rawValue)
             .font(.system(size: size.rawValue))
     }
+
+    /// Applies a square frame using a predefined icon size.
+    ///
+    /// Example:
+    /// ```swift
+    /// Image(systemName: "sun.max")
+    ///     .iconSize(.medium)
+    /// ```
+    ///
+    /// - Parameter size: The icon size to apply.
+    /// - Returns: A view constrained to the specified width and height.
+    func iconSize(_ size: CGFloat) -> some View {
+        self
+            .frame(width: size, height: size)
+            .font(.system(size: size))
+    }
 }
