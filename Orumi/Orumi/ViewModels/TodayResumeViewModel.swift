@@ -14,6 +14,7 @@ final class TodayResumeViewModel {
     var totalMeals: Int = 0
     var totalMealsType: [MealType]
     var meals: [TodayReviewMealModel] = []
+    var shouldShowFoodTypes: Bool = false
     var percentage: String = ""
     var progressBarValue: Double = 0
     var isEmptyDay: Bool = false
@@ -27,9 +28,11 @@ final class TodayResumeViewModel {
         meals = actualMeals.map {
             TodayReviewMealModel(
                 mealType: $0.type,
-                isCompleted: $0.isCompleted
+                isCompleted: $0.isCompleted,
+                foodTypes: $0.items.compactMap { $0.foodType }.removingDuplicates()
             )
         }.sorted(by: { $0.mealType.order < $1.mealType.order })
+        shouldShowFoodTypes = actualMeals.contains { $0.items.contains { $0.foodType != nil } }
         guard totalMeals > 0 else {
             isEmptyDay = true
             percentage = ""

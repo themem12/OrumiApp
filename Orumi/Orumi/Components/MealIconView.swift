@@ -20,7 +20,7 @@ struct MealIconView: View {
             Image(mealType.icon)
                 .resizable()
                 .scaledToFit()
-                .font(.system(size: size/2))
+                .iconSize(size/2)
                 .foregroundStyle(mealType.color)
         }
     }
