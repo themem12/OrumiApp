@@ -183,7 +183,13 @@ private struct DayDataView: View {
             animatedCompletedMeals = 0
             mealTypeHighlighted = nil
         }
-        .sensoryFeedback(.success, trigger: feedback)
+        .sensoryFeedback(trigger: feedback) {
+            guard let feedback else { return nil }
+            if viewModel.meals[feedback].isCompleted {
+                return .success
+            }
+            return nil
+        }
     }
 }
 
@@ -202,8 +208,6 @@ private struct MealCardsView: View {
                         meal: meal,
                         canHighlight: meal.mealType == mealTypeHighlighted
                     )
-                    .padding()
-                    .appSoftCardStyle(background: meal.mealType.color.opacity(0.06))
                 }
             }
         } else {
@@ -254,13 +258,36 @@ private struct CompleteMealResumeCard: View {
             .iconSize(.medium)
             .padding(.top, 16)
         }
+        .padding()
+        .appSoftCardStyle(background: meal.mealType.color.opacity(0.06))
+        .scaleEffect(
+            shouldHighlight
+            ? 1.2
+            : 1.0
+        )
+        .shadow(
+            color: .black.opacity(
+                shouldHighlight ? 0.3 : 0
+            ),
+            radius: 12
+        )
+        .animation(
+            .spring(
+                response: 0.25,
+                dampingFraction: 0.6
+            ),
+            value: shouldHighlight
+        )
     }
 }
 
 private struct EmptyFoodTypeMealResumeCard: View {
     let meal: TodayReviewMealModel
     let canHighlight: Bool
-    var shouldHighlight: Bool { canHighlight && meal.isCompleted }
+    var shouldHighlight: Bool {
+        print(meal.mealType.title)
+        return canHighlight && meal.isCompleted
+    }
     let isWideLayout: Bool
     var body: some View {
         VStack(spacing: 12) {
