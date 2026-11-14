@@ -130,7 +130,7 @@ final class LiveMealDataService: MealDataServiceProtocol {
         }
         let dayRecord = DayRecord(date: date, from: dayPlan, isCompleted: true)
         context.insert(dayRecord)
-        save()
+        
         dayPlan.meals = dayPlan.meals.map({ meal in
             meal.isCompleted = false
             return meal

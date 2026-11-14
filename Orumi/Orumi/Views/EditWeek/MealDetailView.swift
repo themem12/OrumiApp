@@ -75,6 +75,7 @@ struct MealDetailView: View {
         } message: {
             Text(.mealDetailViewDeleteWarningMessage)
         }
+        .sensoryFeedback(.warning, trigger: viewModel.deletedFoodItem)
         .padding(.top, 8)
         .background(
             viewModel.meal.type.color.opacity(0.1)
