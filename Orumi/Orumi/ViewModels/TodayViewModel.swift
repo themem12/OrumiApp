@@ -27,6 +27,7 @@ final class TodayViewModel {
     var alertMessage: String = ""
     var showAlert: Bool = false
     var addFoodTapped: Bool = false
+    var feedbackEvent: TodayViewFeedbackEvent?
 
     var sortedMeals: [Meal] {
         currentDayPlan?.meals.sorted {
@@ -36,6 +37,13 @@ final class TodayViewModel {
 
     var isIpad: Bool {
         UIDevice.layout == .ipad
+    }
+
+    var allMealsCompleted: Bool {
+        !sortedMeals.isEmpty &&
+        sortedMeals.allSatisfy { meal in
+            !meal.items.isEmpty && meal.isCompleted
+        }
     }
 
     init(service: MealDataServiceProtocol, dateProvider: DateProvider) {
@@ -59,13 +67,12 @@ final class TodayViewModel {
     }
 
     func endDayTapped() {
-        for meal in sortedMeals {
-            if !meal.items.isEmpty && !meal.isCompleted {
-                alertTitle = String(localized: "today_view_end_day_alert_title")
-                alertMessage = String(localized: "today_view_end_day_alert_message")
-                showAlert = true
-                return
-            }
+        if !allMealsCompleted {
+            alertTitle = String(localized: "today_view_end_day_alert_title")
+            alertMessage = String(localized: "today_view_end_day_alert_message")
+            showAlert = true
+            feedbackEvent = TodayViewFeedbackEvent(type: .missingMeals)
+            return
         }
         confirmEndDay()
     }
@@ -90,6 +97,13 @@ final class TodayViewModel {
 
     func completeMeal(_ meal: Meal) {
         service.completeMeal(meal)
+        if allMealsCompleted {
+            feedbackEvent = TodayViewFeedbackEvent(type: .allMealsCompleted)
+        } else if meal.isCompleted {
+            feedbackEvent = TodayViewFeedbackEvent(type: .addMealCompleted)
+        } else {
+            feedbackEvent = TodayViewFeedbackEvent(type: .removeMealCompleted)
+        }
     }
 
     func foodItemTapped(foodItem: FoodItem?, meal: Meal) {

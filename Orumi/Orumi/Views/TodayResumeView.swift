@@ -93,6 +93,7 @@ private struct DayDataView: View {
     @State private var mealTypeHighlighted: MealType?
     @State private var animatedColor: Color = AppColors.border
     @State private var animationTask: Task<Void, Never>?
+    @State private var feedback: Int?
 
     var body: some View {
         VStack {
@@ -162,6 +163,8 @@ private struct DayDataView: View {
                         }
 
                         mealTypeHighlighted = viewModel.totalMealsType[index]
+
+                        feedback = index
                     }
 
                     try? await Task.sleep(for: .milliseconds(250))
@@ -180,6 +183,7 @@ private struct DayDataView: View {
             animatedCompletedMeals = 0
             mealTypeHighlighted = nil
         }
+        .sensoryFeedback(.success, trigger: feedback)
     }
 }
 

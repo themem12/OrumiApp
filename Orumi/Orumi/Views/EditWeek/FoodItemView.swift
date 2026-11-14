@@ -93,6 +93,7 @@ struct FoodItemView: View {
         .onChange(of: viewModel.didSaveFood) {
             dismiss()
         }
+        .sensoryFeedback(.success, trigger: viewModel.didSaveFood)
         .alert(
             String(localized: .foodItemViewWarningTitle),
             isPresented: $viewModel.showError

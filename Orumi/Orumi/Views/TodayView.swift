@@ -102,6 +102,23 @@ struct TodayView: View {
                 viewModel.loadTodayPlan()
             }
         }
+        .sensoryFeedback(trigger: viewModel.feedbackEvent?.id) {
+            switch viewModel.feedbackEvent?.type {
+            case .addMealCompleted:
+                return .increase
+            case .removeMealCompleted:
+                return .decrease
+            case .allMealsCompleted:
+                return .success
+            case .dayEnded:
+                return .warning
+            case .missingMeals:
+                return .error
+            default:
+                return .stop
+            }
+            // error, impact, increase, decrease, success, warning, impact(flex)
+        }
     }
 }
 

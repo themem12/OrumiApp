@@ -15,6 +15,7 @@ final class MealDetailViewModel {
     private var foodItemMode: FoodItemViewModel.FoodItemMode = .create
     private var foodItemPendingDeletion: FoodItem?
     private(set) var meal: Meal
+    private(set) var deletedFoodItem: FoodItem.ID?
 
     var showAddFoodSheet: Bool = false
     var showDeleteConfirmation: Bool = false
@@ -32,6 +33,7 @@ final class MealDetailViewModel {
     func deleteFoodItemConfirmed() {
         guard let foodItem = foodItemPendingDeletion else { return }
         service.deleteFoodItem(foodItem, from: meal)
+        deletedFoodItem = foodItem.id
     }
 
     func getMealTypes() -> [FoodType] {
