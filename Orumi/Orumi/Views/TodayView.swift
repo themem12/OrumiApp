@@ -61,6 +61,7 @@ struct TodayView: View {
                         )
                     } label: {
                         Image(systemName: "slider.horizontal.3")
+                            .coachMarkAnchor(.editWeek)
                     }
                     .accessibilityLabel(.todayViewEditWeekBarItemAccessibilityLabel)
                 }
@@ -71,9 +72,13 @@ struct TodayView: View {
                         )
                     } label: {
                         Image(systemName: "calendar.badge.checkmark")
+                            .coachMarkAnchor(.history)
                     }
                     .accessibilityLabel(.todayViewHistoryBarItemAccessibilityLabel)
                 }
+            }
+            .overlayPreferenceValue(CoachMarkPreferenceKey.self) { anchors in
+                CoachMarkOverlay(anchors: anchors)
             }
             .onReceive(NotificationCenter.default.publisher(for: .mealDataDidChange), perform: { _ in
                 viewModel.loadTodayPlan()
@@ -160,6 +165,7 @@ private struct TodayContentView: View {
                             } label: {
                                 MealCard(meal: meal)
                             }
+                            .coachMarkAnchor(meal.type == .breakfast ? .breakfast : .empty)
                             .buttonStyle(.plain)
                             .padding(.top, viewModel.sortedMeals.isFirst(meal) ? SpaceSize.medium.rawValue : SpaceSize.xSmall.rawValue)
                             .padding(.bottom, viewModel.sortedMeals.isLast(meal) ? SpaceSize.medium.rawValue : SpaceSize.xSmall.rawValue)

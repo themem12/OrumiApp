@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		9B51AC843006AF6700BDF082 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B51AC833006AF6400BDF082 /* Logger.swift */; };
+		9B7ECCC830AD26DE00814C71 /* CoachMarkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCC730AD26DD00814C71 /* CoachMarkTarget.swift */; };
+		9B7ECCCA30AD26F700814C71 /* CoachMarkPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCC930AD26F500814C71 /* CoachMarkPreferenceKey.swift */; };
+		9B7ECCCC30AD27C500814C71 /* CoachMarkAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCCB30AD27C100814C71 /* CoachMarkAnchor.swift */; };
+		9B7ECCCE30AD293800814C71 /* CoachMarkCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCCD30AD293200814C71 /* CoachMarkCard.swift */; };
+		9B7ECCD030AD4AE100814C71 /* CoachMarkLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCCF30AD4ADB00814C71 /* CoachMarkLayout.swift */; };
+		9B7ECCD230AD4C1100814C71 /* CoachMarkArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCD130AD4C1000814C71 /* CoachMarkArrow.swift */; };
+		9B7ECCD430AD51AA00814C71 /* CoachMarkOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCD330AD51A500814C71 /* CoachMarkOverlay.swift */; };
+		9B7ECCD630AD5F1800814C71 /* CoachMarkBackdrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7ECCD530AD5F1700814C71 /* CoachMarkBackdrop.swift */; };
 		9B90C2BD3089CA3000CC72CF /* FoodTypePillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C2BC3089CA3000CC72CF /* FoodTypePillView.swift */; };
 		9B90C2BF3089CF1600CC72CF /* FoodTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C2BE3089CF0C00CC72CF /* FoodTypeModel.swift */; };
 		9B90C2C13089F4F900CC72CF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B90C2C03089F4F000CC72CF /* FlowLayout.swift */; };
@@ -66,6 +74,14 @@
 
 /* Begin PBXFileReference section */
 		9B51AC833006AF6400BDF082 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		9B7ECCC730AD26DD00814C71 /* CoachMarkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkTarget.swift; sourceTree = "<group>"; };
+		9B7ECCC930AD26F500814C71 /* CoachMarkPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkPreferenceKey.swift; sourceTree = "<group>"; };
+		9B7ECCCB30AD27C100814C71 /* CoachMarkAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkAnchor.swift; sourceTree = "<group>"; };
+		9B7ECCCD30AD293200814C71 /* CoachMarkCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkCard.swift; sourceTree = "<group>"; };
+		9B7ECCCF30AD4ADB00814C71 /* CoachMarkLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkLayout.swift; sourceTree = "<group>"; };
+		9B7ECCD130AD4C1000814C71 /* CoachMarkArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkArrow.swift; sourceTree = "<group>"; };
+		9B7ECCD330AD51A500814C71 /* CoachMarkOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkOverlay.swift; sourceTree = "<group>"; };
+		9B7ECCD530AD5F1700814C71 /* CoachMarkBackdrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkBackdrop.swift; sourceTree = "<group>"; };
 		9B90C2BC3089CA3000CC72CF /* FoodTypePillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypePillView.swift; sourceTree = "<group>"; };
 		9B90C2BE3089CF0C00CC72CF /* FoodTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypeModel.swift; sourceTree = "<group>"; };
 		9B90C2C03089F4F000CC72CF /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
@@ -135,6 +151,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B7ECCC630AD26D200814C71 /* CoachMark */ = {
+			isa = PBXGroup;
+			children = (
+				9B7ECCD530AD5F1700814C71 /* CoachMarkBackdrop.swift */,
+				9B7ECCD330AD51A500814C71 /* CoachMarkOverlay.swift */,
+				9B7ECCD130AD4C1000814C71 /* CoachMarkArrow.swift */,
+				9B7ECCCF30AD4ADB00814C71 /* CoachMarkLayout.swift */,
+				9B7ECCCD30AD293200814C71 /* CoachMarkCard.swift */,
+				9B7ECCCB30AD27C100814C71 /* CoachMarkAnchor.swift */,
+				9B7ECCC930AD26F500814C71 /* CoachMarkPreferenceKey.swift */,
+				9B7ECCC730AD26DD00814C71 /* CoachMarkTarget.swift */,
+			);
+			path = CoachMark;
+			sourceTree = "<group>";
+		};
 		9BB7F0B52FA01332003E89AB = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +185,7 @@
 		9BBCCA342FFB6AA0007E0EA5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9B7ECCC630AD26D200814C71 /* CoachMark */,
 				9BBCCA302FFB6AA0007E0EA5 /* AppInputField.swift */,
 				9BBCCA312FFB6AA0007E0EA5 /* MealCard.swift */,
 				9BBCCA322FFB6AA0007E0EA5 /* MealIconView.swift */,
@@ -432,6 +464,7 @@
 				9BBCCA762FFB6AA0007E0EA5 /* HistoryContainerView.swift in Sources */,
 				9BBCCA772FFB6AA0007E0EA5 /* TodayView.swift in Sources */,
 				9BBCCA782FFB6AA0007E0EA5 /* Image+Extensions.swift in Sources */,
+				9B7ECCD430AD51AA00814C71 /* CoachMarkOverlay.swift in Sources */,
 				9BBCCA792FFB6AA0007E0EA5 /* Date+Extensions.swift in Sources */,
 				9BBCCA7A2FFB6AA0007E0EA5 /* FoodItemViewModel.swift in Sources */,
 				9BBCCA7B2FFB6AA0007E0EA5 /* MealIconView.swift in Sources */,
@@ -439,6 +472,7 @@
 				9BAAD2F830A2F55B00215D4F /* TodayViewFeedbackEvent.swift in Sources */,
 				9BBCCA7D2FFB6AA0007E0EA5 /* Layout.swift in Sources */,
 				9BBCCA7E2FFB6AA0007E0EA5 /* OrumiApp.swift in Sources */,
+				9B7ECCCA30AD26F700814C71 /* CoachMarkPreferenceKey.swift in Sources */,
 				9BBCCA7F2FFB6AA0007E0EA5 /* FoodItemView.swift in Sources */,
 				9BBCCAA62FFB9ACE007E0EA5 /* Meal+Fixtures.swift in Sources */,
 				9BBCCA802FFB6AA0007E0EA5 /* AppInputField.swift in Sources */,
@@ -454,6 +488,7 @@
 				9BBCCA862FFB6AA0007E0EA5 /* EditWeekContainerView.swift in Sources */,
 				9B51AC843006AF6700BDF082 /* Logger.swift in Sources */,
 				9BBCCA872FFB6AA0007E0EA5 /* WeekDaysModel.swift in Sources */,
+				9B7ECCCE30AD293800814C71 /* CoachMarkCard.swift in Sources */,
 				9BBCCA882FFB6AA0007E0EA5 /* MockMealDataService.swift in Sources */,
 				9BBCCA892FFB6AA0007E0EA5 /* MealCard.swift in Sources */,
 				9BBCCA8A2FFB6AA0007E0EA5 /* HistoryMaintenanceService.swift in Sources */,
@@ -462,7 +497,10 @@
 				9BBCCA8C2FFB6AA0007E0EA5 /* HistoryWideView.swift in Sources */,
 				9BBCCA8D2FFB6AA0007E0EA5 /* EditWeekView.swift in Sources */,
 				9BBCCA8E2FFB6AA0007E0EA5 /* EditWeekContainerViewModel.swift in Sources */,
+				9B7ECCC830AD26DE00814C71 /* CoachMarkTarget.swift in Sources */,
 				9BBCCA8F2FFB6AA0007E0EA5 /* EditWeekWideView.swift in Sources */,
+				9B7ECCD630AD5F1800814C71 /* CoachMarkBackdrop.swift in Sources */,
+				9B7ECCD230AD4C1100814C71 /* CoachMarkArrow.swift in Sources */,
 				9BBCCA902FFB6AA0007E0EA5 /* ProgressCircleView.swift in Sources */,
 				9BBCCA912FFB6AA0007E0EA5 /* HistoryContainerViewModel.swift in Sources */,
 				9BBCCA922FFB6AA0007E0EA5 /* MealTypeModel.swift in Sources */,
@@ -474,7 +512,9 @@
 				9BBCCAA82FFB9C64007E0EA5 /* DayPlan+Fixtures.swift in Sources */,
 				9BBCCA982FFB6AA0007E0EA5 /* SwiftDataModels.swift in Sources */,
 				9BBCCA9A2FFB6AA0007E0EA5 /* DateProvider.swift in Sources */,
+				9B7ECCCC30AD27C500814C71 /* CoachMarkAnchor.swift in Sources */,
 				9BBCCAA42FFB9903007E0EA5 /* FoodItem+Fixtures.swift in Sources */,
+				9B7ECCD030AD4AE100814C71 /* CoachMarkLayout.swift in Sources */,
 				9B90C2BF3089CF1600CC72CF /* FoodTypeModel.swift in Sources */,
 				9BBCCA9C2FFB6AA0007E0EA5 /* AppColors.swift in Sources */,
 			);
